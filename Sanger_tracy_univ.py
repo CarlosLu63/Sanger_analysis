@@ -13,7 +13,10 @@ class Sanger_analysis(object):
         self.post_dict['posit'] = str(Pos)
         
         ###screen ab1 file###
-        input_file = glob.glob(self.sample_path + "*.ab1")[0]
+        try:
+            input_file = glob.glob(self.sample_path + "*.ab1")[0]
+        except Exception as e:
+            print("Unexpected error when screening ab1 file: ", e)
 
         ###setup path name###
         vcf_path, input_filename, output_filename = self.read_ab1(input_file)
